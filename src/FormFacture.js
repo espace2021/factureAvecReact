@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState,useCallback } from 'react'
 
 const FormFacture=(props)=>{
         const [ref,setRef]=useState('')
@@ -6,13 +6,13 @@ const FormFacture=(props)=>{
         const [qte,setQte]=useState(0)
         const [prix,setPrix]=useState(0)
       
-        const validerLigne=()=>{
+        const validerLigne= useCallback(() => {
           props.ajoutLigne(ref,des,qte,prix);
           setRef("")
           setDes("")
           setQte("")
           setPrix("")
-        }
+        },[ref,des,qte,prix]);
 
     return (
       <div>
