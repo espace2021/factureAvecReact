@@ -1,7 +1,7 @@
 import EnteteFacture from './EnteteFacture'
 import DetailFacture from './DetailFacture'
 import FormFacture from './FormFacture'
-import { useState } from 'react'
+import { useState,useCallback } from 'react'
 
 const Facture =()=>{
    
@@ -21,19 +21,30 @@ const Facture =()=>{
                 {reference:"17",designation:"Micro-onde",qte:4,prix:300}
             ]);
      
-      const ajoutLigne =(ref,des,qt,pr)=>{
+      const ajoutLigne = useCallback((ref,des,qt,pr) => {
          //on construit la nouvelle ligne 
          let ligne={reference:ref,designation:des,qte:qt,prix:pr}
      
          //on change le state d'articles en lui ajoutant la ligne
          setArticle([...articles, ligne])
 
-         }
+        },[articles]);
+      
+      const suppLigne = useCallback((index) => {
+         if (
+          !window.confirm("Are you sure you want to delete")
+        ) {
+          return;
+        }
+        articles.splice(index, 1);
+        setArticle([...articles])
+        
+      },[articles]);
 
     return (
       <div>
         <EnteteFacture fact={facture} cl={client} arts={articles} />
-        <DetailFacture arts={articles} />
+        <DetailFacture arts={articles} suppLigne={suppLigne}  />
         <FormFacture ajoutLigne={ajoutLigne}  />
       </div>
     )

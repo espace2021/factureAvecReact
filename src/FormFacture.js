@@ -6,13 +6,13 @@ const FormFacture=(props)=>{
         const [qte,setQte]=useState(0)
         const [prix,setPrix]=useState(0)
       
-        const validerLigne= useCallback(() => {
+        const validerLigne= () => {
           props.ajoutLigne(ref,des,qte,prix);
           setRef("")
           setDes("")
           setQte("")
           setPrix("")
-        },[ref,des,qte,prix]);
+        }
 
     return (
       <div>
