@@ -4,8 +4,18 @@ const DetailFacture =(props)=>{
  return (
       <div>
            <div>
-            
+           <h3>Liste des articles</h3>
+
             <table border="1">
+            <thead>
+        <tr>
+          <th width="30px">Réf</th>
+          <th width="40px">Désignation</th>
+          <th width="25px">Qté</th>
+          <th width="35px">Prix</th>
+          <th width="40px">S/Total</th>
+        </tr>
+        </thead>
             <tbody>
         {props.arts.map((value,index)=>{
             

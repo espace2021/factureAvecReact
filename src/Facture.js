@@ -28,7 +28,7 @@ const Facture =()=>{
          //on change le state d'articles en lui ajoutant la ligne
          setArticle([...articles, ligne])
 
-    }
+         }
 
     return (
       <div>

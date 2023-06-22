@@ -1,25 +1,24 @@
 import { useState } from 'react'
 
 const FormFacture=(props)=>{
-        const [ref,setRef]=useState()
-        const [des,setDes]=useState()
+        const [ref,setRef]=useState('')
+        const [des,setDes]=useState('')
         const [qte,setQte]=useState(0)
         const [prix,setPrix]=useState(0)
+      
+        const validerLigne=()=>{
+          props.ajoutLigne(ref,des,qte,prix);
+          setRef("")
+          setDes("")
+          setQte("")
+          setPrix("")
+        }
 
-       
     return (
       <div>
-     <h3>Liste des articles</h3>
+    
        <table border="1">
-        <thead>
-        <tr>
-          <th width="30px">Réf</th>
-          <th width="40px">Désignation</th>
-          <th width="25px">Qté</th>
-          <th width="35px">Prix</th>
-          <th width="40px">S/Total</th>
-        </tr>
-        </thead>
+    
         <tbody>
       <tr>
        
@@ -27,12 +26,12 @@ const FormFacture=(props)=>{
         name="ref" 
         value={ref} 
         onChange={e => setRef(e.target.value)}
-        size="2"/> 
+        size="1"/> 
         </td> 
        <td> <input type="text" 
        name="des" value={ des} 
        onChange={e => setDes(e.target.value)}
-       size="11"/> </td>  
+       size="12"/> </td>  
        <td> <input type="text" 
        name="qte" 
        value={qte} 
@@ -46,7 +45,7 @@ const FormFacture=(props)=>{
        </tr> 
        </tbody> 
       </table>
-        <button onClick={()=>props.ajoutLigne(ref,des,qte,prix)}>
+        <button onClick={()=>validerLigne()}>
            Ajout ligne
         </button>
       </div>
