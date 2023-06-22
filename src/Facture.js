@@ -38,14 +38,28 @@ const Facture =()=>{
         }
         articles.splice(index, 1);
         setArticle([...articles])
-        
+
       },[articles]);
+
+      const [indexModif,setIndexModif]=useState("")
+
+      const modifLigne = useCallback((ref,des,qt,pr) => {  console.log(indexModif)
+        let ligne={reference:ref,designation:des,qte:qt,prix:pr}
+        
+        setArticle((prevData) => {
+            const newData = [...prevData];
+    
+        newData[indexModif] = ligne;
+        setIndexModif("")
+        return newData;
+          })
+     },[articles,indexModif]);
 
     return (
       <div>
         <EnteteFacture fact={facture} cl={client} arts={articles} />
-        <DetailFacture arts={articles} suppLigne={suppLigne}  />
-        <FormFacture ajoutLigne={ajoutLigne}  />
+        <DetailFacture arts={articles} suppLigne={suppLigne}  setIndexModif={setIndexModif}/>
+        <FormFacture ajoutLigne={ajoutLigne} articles={indexModif?articles[indexModif] :{reference:"",designation:"",qte:0,prix:0}} modifLigne={modifLigne} />
       </div>
     )
 

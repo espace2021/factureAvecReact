@@ -1,9 +1,10 @@
 const DetailFacture =(props)=>{
    
-  const supprimerLigne= (index) => { console.log(index)
+const supprimerLigne= (index) => { console.log(index)
    props.suppLigne(index);
 
   }
+
 
  return (
       <div>
@@ -29,6 +30,7 @@ const DetailFacture =(props)=>{
              <td width="40px"> {value.qte}</td> 
              <td width="55px"> {value.prix}</td> 
              <td width="55px"> {value.prix*value.qte}</td>  
+             <td width="55px" onClick={()=>props.setIndexModif(index)} style={{cursor:"pointer"}}> Modifier </td>  
              <td width="55px" onClick={()=>supprimerLigne(index)} style={{cursor:"pointer"}}> Supprimer </td>  
              </tr>  )          
                     
