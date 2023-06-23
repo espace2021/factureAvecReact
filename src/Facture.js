@@ -1,6 +1,6 @@
 import EnteteFacture from './EnteteFacture'
 import DetailFacture from './DetailFacture'
-import FormFacture from './FormFacture'
+import FormFacture from './FormFactureAvecUseRef'
 import { useState,useCallback } from 'react'
 
 const Facture =()=>{
